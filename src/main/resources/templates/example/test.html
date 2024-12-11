@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Template</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <script src="https://kit.fontawesome.com/a93cd85bc0.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            position: relative;
+        }
+        .sidebar {
+            width: 220px;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: #fff;
+            border-right: 1px solid #ccc;
+        }
+        .sidebar h4 {
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #262626;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .sidebar a .icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .sidebar a.active {
+            font-weight: bold;
+            color: #000;
+        }
+        .main-content-suggestions {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .main-content {
+            flex-grow: 1;
+            margin-left: 240px;
+            margin-right: 300px;
+            padding: 20px;
+            height: 100vh;
+        }
+        .stories {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .stories .story {
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .stories .story img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #d6249f;
+        }
+        .post {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 10px;
+            background: white;
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-right: 10px;
+        }
+        .post-body img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .post-icons {
+            width: 100%;
+        }
+        .post .post-body .icon {
+            font-size: 20px;
+        }
+        .icon-bookmark {
+            float: right;
+        }
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .suggestions {
+            width: 350px;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            background-color: #fff;
+            border-left: 1px solid #ccc;
+        }
+        .suggestions h6 {
+            font-weight: bold;
+        }
+        .suggestions .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .suggestions .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .suggestions .user-suggestion {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .suggestions .user-suggestion img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .suggestions .follow-btn {
+            color: #0095f6;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h4>Instagram</h4>
+        <a href="#" class="active"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="#"><span class="icon"><i class="fas fa-search"></i></span>Search</a>
+        <a href="#"><span class="icon"><i class="fas fa-compass"></i></span>Explore</a>
+        <a href="#"><span class="icon"><i class="fas fa-clapperboard"></i></span>Reels</a>
+        <a href="#"><span class="icon"><i class="fas fa-envelope"></i></span>Messages</a>
+        <a href="#"><span class="icon"><i class="fas fa-heart"></i></span>Notifications</a>
+        <a href="#"><span class="icon"><i class="fas fa-plus-circle"></i></span>Create</a>
+        <a href="#"><span class="icon"><i class="fas fa-user-circle"></i></span>Profile</a>
+    </div>
+
+    <div class="main-content-suggestions">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Stories -->
+            <div class="stories">
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user1</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user2</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user3</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user4</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user5</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user6</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user7</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user8</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user9</p></div>
+                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user10</p></div>
+            </div>
+
+            <!-- Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <p><strong>@username</strong></p>
+                </div>
+                <div class="post-body">
+                    <img src="https://via.placeholder.com/600x400" alt="Post Image">
+                    <div class="post-icons">
+                        <span class="icon"><i class="fas fa-heart"></i></span>
+                        <span class="icon"><i class="fas fa-comment"></i></span>
+                        <span class="icon"><i class="fas fa-paper-plane"></i></span>
+                        <span class="icon icon-bookmark"><i class="fas fa-bookmark"></i></span>
+                    </div>
+                    <p><strong>@username</strong> Caption for the post...</p>
+                </div>
+<!--                <div class="post-footer">-->
+<!--                    <span><i class="fas fa-heart"></i> 10 Likes</span>-->
+<!--                    <span><i class="fas fa-comment"></i> 5 Comments</span>-->
+<!--                </div>-->
+            </div>
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <p><strong>@username</strong></p>
+                </div>
+                <div class="post-body">
+                    <img src="https://via.placeholder.com/600x400" alt="Post Image">
+                    <div class="post-icons">
+                        <span class="icon"><i class="fas fa-heart"></i></span>
+                        <span class="icon"><i class="fas fa-comment"></i></span>
+                        <span class="icon"><i class="fas fa-paper-plane"></i></span>
+                        <span class="icon icon-bookmark"><i class="fas fa-bookmark"></i></span>
+                    </div>
+                    <p><strong>@username</strong> Caption for the post...</p>
+                </div>
+<!--                <div class="post-footer">-->
+<!--                    <span><i class="fas fa-heart"></i> 10 Likes</span>-->
+<!--                    <span><i class="fas fa-comment"></i> 5 Comments</span>-->
+<!--                </div>-->
+            </div>
+        </div>
+
+        <!-- Suggestions -->
+        <div class="suggestions">
+            <div class="profile mb-3">
+                <img src="https://via.placeholder.com/50" alt="Profile">
+                <span>@your_profile</span>
+                <span class="follow-btn">Switch</span>
+            </div>
+            <h6>Suggestions For You</h6>
+            <div class="user-suggestion">
+                <img src="https://via.placeholder.com/40" alt="User">
+                <span>@user1</span>
+                <span class="follow-btn">Follow</span>
+            </div>
+            <div class="user-suggestion">
+                <img src="https://via.placeholder.com/40" alt="User">
+                <span>@user2</span>
+                <span class="follow-btn">Follow</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
