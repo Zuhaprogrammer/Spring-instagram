@@ -99,10 +99,8 @@ public class UserService {
         List<User> users = new ArrayList<>();
         if (search.charAt(0) == '@') {
             users = userRepository.findAllByLinkContains(search.substring(1));
-            System.out.println(users);
         } else {
             users = userRepository.findAllByUsernameContains(search);
-            System.out.println(users);
         }
         return users.stream().map(u -> {
             return UserResponse.builder()

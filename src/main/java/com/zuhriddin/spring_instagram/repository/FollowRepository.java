@@ -10,4 +10,5 @@ import java.util.*;
 @Repository
 public interface FollowRepository extends JpaRepository<Follow, UUID> {
     List<Follow> findAllByFollower_id(UUID id);
+    Optional<Follow> findByFollower_idAndFollowing_id(UUID followerId, UUID followingId);
 }
