@@ -1,5 +1,6 @@
 package com.zuhriddin.spring_instagram.controller.dto.user;
 
+import com.zuhriddin.spring_instagram.model.Content;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Builder
-public class UserCreateResponse {
+public class UserResponse {
     private UUID id;
     private String fullName;
     private String username;
+    private Content content;
     private LocalDateTime lastActive;
 }

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Template</title>
+    <title>Instagram Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <script src="https://kit.fontawesome.com/a93cd85bc0.js" crossorigin="anonymous"></script>
     <style>
@@ -19,7 +20,7 @@
             position: relative;
         }
         .sidebar {
-            width: 200px; /* Chap qismni kichraytirdik */
+            width: 220px;
             padding: 20px;
             position: fixed;
             top: 0;
@@ -29,9 +30,10 @@
             border-right: 1px solid #ccc;
         }
         .sidebar h4 {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Pacifico', cursive;
             font-size: 24px;
             font-weight: bold;
+            margin-bottom: 40px;
         }
         .sidebar a {
             text-decoration: none;
@@ -39,7 +41,7 @@
             font-size: 18px;
             display: flex;
             align-items: center;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         .sidebar a .icon {
             font-size: 20px;
@@ -49,12 +51,15 @@
             font-weight: bold;
             color: #000;
         }
+        .main-content-suggestions {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
         .main-content {
             flex-grow: 1;
-            margin-left: 220px; /* Chap panel joyini hisobga olish */
-            margin-right: 320px; /* O'ng panel joyini hisobga olish */
+            margin-left: 240px;
+            margin-right: 300px;
             padding: 20px;
-            overflow-y: auto;
             height: 100vh;
         }
         .stories {
@@ -77,7 +82,7 @@
         .post {
             margin-bottom: 20px;
             border: 1px solid #ccc;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
             background: white;
         }
@@ -95,9 +100,23 @@
         .post-body img {
             width: 100%;
             border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .post-icons {
+            width: 100%;
+        }
+        .post .post-body .icon {
+            font-size: 20px;
+        }
+        .icon-bookmark {
+            float: right;
+        }
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
         }
         .suggestions {
-            width: 380px; /* O'ng panelni kattalashtirdik */
+            width: 350px;
             padding: 20px;
             position: fixed;
             top: 0;
@@ -109,16 +128,25 @@
         .suggestions h6 {
             font-weight: bold;
         }
+        .suggestions .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .suggestions .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
         .suggestions .user-suggestion {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             margin: 10px 0;
-            padding-right: 40px;
         }
         .suggestions .user-suggestion img {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             margin-right: 10px;
         }
@@ -126,19 +154,7 @@
             color: #0095f6;
             font-weight: bold;
             cursor: pointer;
-        }
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            left: 5px;
-            display: flex;
-            align-items: center;
-        }
-        .footer img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
+            margin-left: auto;
         }
     </style>
 </head>
@@ -146,85 +162,132 @@
 <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4>Instagram</h4>
-        <a href="#" class="active"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
-        <a href="#"><span class="icon"><i class="fas fa-compass"></i></span>Explore</a>
-        <a href="#"><span class="icon"><i class="fas fa-envelope"></i></span>Messages</a>
-        <a href="#"><span class="icon"><i class="fas fa-heart"></i></span>Notifications</a>
+        <!--        <h4>Instagram</h4>-->
+        <a th:href="@{'/home/' + ${currentUser.getId()}}"><img src="/images/instagram-word-logo.png" style="width: 80%" alt="instagram-logo" class="mb-3"></a>
+        <a th:href="@{'/home/' + ${currentUser.getId()}}" class="active"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="#"><span class="icon"><i class="fas fa-search"></i></span>Search</a>
+        <a href="#"><span class="icon"><i class="far fa-compass"></i></span>Explore</a>
+        <a href="#"><span class="icon"><i class="fas fa-clapperboard"></i></span>Reels</a>
+        <a href="#"><span class="icon"><i class="far fa-envelope"></i></span>Messages</a>
+        <a href="#"><span class="icon"><i class="far fa-heart"></i></span>Notifications</a>
         <a href="#"><span class="icon"><i class="fas fa-plus-circle"></i></span>Create</a>
-        <a href="#"><span class="icon"><i class="fas fa-user-circle"></i></span>Profile</a>
+        <a th:href="@{'/user/' + ${currentUser.getId()} + '/profile'}"><span class="icon"><i class="far fa-user-circle"></i></span>Profile</a>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Stories -->
-        <div class="stories">
-            <!-- 10 ta hikoya qo‘shildi -->
-            <div class="story">
-                <img src="https://via.placeholder.com/60" alt="User">
-                <p>@user1</p>
+    <div class="main-content-suggestions">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Stories -->
+            <div class="stories" id="stories" th:data-id="${currentUser.getId()}">
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user1</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user2</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user3</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user4</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user5</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user6</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user7</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user8</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user9</p></div>-->
+<!--                <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user10</p></div>-->
             </div>
-            <!-- Repeat -->
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user2</p></div>
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user3</p></div>
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user4</p></div>
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user5</p></div>
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user6</p></div>
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user7</p></div>
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user8</p></div>
-            <div class="story"><img src="https://via.placeholder.com/60" alt="User"><p>@user9</p></div>
+
+            <!-- Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <p><strong>@username</strong></p>
+                </div>
+                <div class="post-body">
+                    <img src="https://via.placeholder.com/600x400" alt="Post Image">
+                    <div class="post-icons">
+                        <span class="icon"><i class="far fa-heart"></i></span>
+                        <span class="icon"><i class="far fa-comment"></i></span>
+                        <span class="icon"><i class="far fa-paper-plane"></i></span>
+                        <span class="icon icon-bookmark"><i class="far fa-bookmark"></i></span>
+                    </div>
+                    <span>10 Likes</span>
+                    <p><strong>@username</strong> Caption for the post...</p>
+                </div>
+                <!--                <div class="post-footer">-->
+                <!--                    <span><i class="fas fa-heart"></i> 10 Likes</span>-->
+                <!--                    <span><i class="fas fa-comment"></i> 5 Comments</span>-->
+                <!--                </div>-->
+            </div>
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <p><strong>@username</strong></p>
+                </div>
+                <div class="post-body">
+                    <img src="https://via.placeholder.com/600x400" alt="Post Image">
+                    <div class="post-icons">
+                        <span class="icon"><i class="far fa-heart"></i></span>
+                        <span class="icon"><i class="far fa-comment"></i></span>
+                        <span class="icon"><i class="far fa-paper-plane"></i></span>
+                        <span class="icon icon-bookmark"><i class="far fa-bookmark"></i></span>
+                    </div>
+                    <span>10 Likes</span>
+                    <p><strong>@username</strong> Caption for the post...</p>
+                </div>
+                <!--                <div class="post-footer">-->
+                <!--                    <span><i class="fas fa-heart"></i> 10 Likes</span>-->
+                <!--                    <span><i class="fas fa-comment"></i> 5 Comments</span>-->
+                <!--                </div>-->
+            </div>
         </div>
 
-        <!-- Posts -->
-        <div class="post">
-            <div class="post-header">
+        <!-- Suggestions -->
+        <div class="suggestions">
+            <div class="profile mb-3">
+                <a th:href="@{'/user/' + ${currentUser.getId()} + '/profile'}"><img th:if="${currentUser.getContent() == null}" src="/images/user-profile-icon-free-vector.jpg" alt="Profile">
+                <img th:unless="${currentUser.getContent() == null}" th:src="@{'/file/' + ${currentUser.getContent().getContenetName()}}" alt="Profile"></a>
+                <a th:href="@{'/user/' + ${currentUser.getId()} + '/profile'}"><span th:text="${currentUser.getUsername()}" class="text-decoration-none"></span></a>
+                <span class="follow-btn">Switch</span>
+            </div>
+            <h6>Suggestions For You</h6>
+            <div class="user-suggestion">
                 <img src="https://via.placeholder.com/40" alt="User">
-                <p><strong>@username</strong></p>
+                <span>@user1</span>
+                <span class="follow-btn">Follow</span>
             </div>
-            <div class="post-body">
-                <img src="https://via.placeholder.com/600x400" alt="Post Image">
-                <p><strong>@username</strong> Caption for the post...</p>
-            </div>
-        </div>
-        <div class="post">
-            <div class="post-header">
+            <div class="user-suggestion">
                 <img src="https://via.placeholder.com/40" alt="User">
-                <p><strong>@username2</strong></p>
-            </div>
-            <div class="post-body">
-                <img src="https://via.placeholder.com/600x400" alt="Post Image">
-                <p><strong>@username2</strong> Another post caption...</p>
+                <span>@user2</span>
+                <span class="follow-btn">Follow</span>
             </div>
         </div>
     </div>
 
-    <!-- Suggestions -->
-    <div class="suggestions">
-        <h6>Suggestions For You</h6>
-        <div class="user-suggestion">
-            <img src="https://via.placeholder.com/30" alt="User">
-            <span>@user1</span>
-            <span class="follow-btn">Follow</span>
-        </div>
-        <div class="user-suggestion">
-            <img src="https://via.placeholder.com/30" alt="User">
-            <span>@user2</span>
-            <span class="follow-btn">Follow</span>
-        </div>
-        <div class="user-suggestion">
-            <img src="https://via.placeholder.com/30" alt="User">
-            <span>@user3</span>
-            <span class="follow-btn">Follow</span>
-        </div>
-    </div>
 </div>
 
-<!-- Footer -->
-<div class="footer">
-    <img src="https://via.placeholder.com/40" alt="User">
-    <p>@your_account</p>
-</div>
+<script>
+    window.onload = function () {
+        getFollowings();
+    }
 
+    async function getFollowings() {
+        const userId = document.getElementById('stories').dataset.id;
+        const url = "http://localhost:8080/follow/" + userId + "/following-list";
+        const encodedUrl = encodeURI(url);
+        try {
+            const res = await fetch(encodedUrl);
+            renderStories(await res.json());
+        } catch (error) {
+            console.log("Occur error: ",  error);
+        }
+    }
+
+    function renderStories(followingList) {
+        const stories = document.getElementById('stories');
+
+        let temp = "";
+        for (let i = 0; i < followingList.length; i++) {
+            temp += "<div class=\"story\">"+ followingList[i].content === null ? +"<img src=\"/images/user-profile-icon-free-vector.jpg\" alt=\"User\">" : +
+                "<img th:src=\"@{'/file/' +"+ followingList[i].content.contentName +"\" alt=\"User\"><p>"+ followingList[i].username +"</p></div>";
+        }
+        stories.innerHTML = temp;
+    }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

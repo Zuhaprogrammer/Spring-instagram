@@ -4,6 +4,7 @@ import com.zuhriddin.spring_instagram.controller.dto.user.UserCreateRequest;
 import com.zuhriddin.spring_instagram.controller.dto.user.UserLoginRequest;
 import com.zuhriddin.spring_instagram.model.User;
 import com.zuhriddin.spring_instagram.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +35,9 @@ public class RegisterAndLoginController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute UserLoginRequest userLoginRequest) {
+    public String login(@ModelAttribute UserLoginRequest userLoginRequest, HttpServletResponse response) {
         Optional<User> user = userService.checkUserByUsernameAndPassword(userLoginRequest);
+        userService.saveOwnerToCookie(response, user);
         return user.map(value -> "redirect:/home/" + value.getId()).orElse("redirect:/");
     }
 }

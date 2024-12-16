@@ -1,33 +1,28 @@
-package com.zuhriddin.spring_instagram.model;
+package com.zuhriddin.spring_instagram.controller.dto.user;
 
+import com.zuhriddin.spring_instagram.model.Content;
 import com.zuhriddin.spring_instagram.model.enumeration.Gender;
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class UserProfileResponse {
     private UUID id;
     private String fullName;
     private String username;
-    private String email;
-    private String password;
-    @OneToOne
-    private Content content;
-    private String link;
     private String bio;
-    @Enumerated(EnumType.STRING)
+    private String link;
+    private String email;
     private Gender gender;
+    private Content content;
     private LocalDateTime createdDate;
     private LocalDateTime lastActive;
 }
