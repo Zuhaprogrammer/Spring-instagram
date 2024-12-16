@@ -241,7 +241,7 @@
             <div class="profile mb-3">
                 <a th:href="@{'/user/' + ${currentUser.getId()} + '/profile'}"><img th:if="${currentUser.getContent() == null}" src="/images/user-profile-icon-free-vector.jpg" alt="Profile">
                 <img th:unless="${currentUser.getContent() == null}" th:src="@{'/file/' + ${currentUser.getContent().getContenetName()}}" alt="Profile"></a>
-                <a th:href="@{'/user/' + ${currentUser.getId()} + '/profile'}"><span th:text="${currentUser.getUsername()}" class="text-decoration-none"></span></a>
+                <a th:href="@{'/user/' + ${currentUser.getId()} + '/profile'}" class="text-decoration-none"><span th:text="${currentUser.getUsername()}"></span></a>
                 <span class="follow-btn">Switch</span>
             </div>
             <h6>Suggestions For You</h6>

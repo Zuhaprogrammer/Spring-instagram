@@ -25,4 +25,9 @@ public class FollowService {
                     .build();
         }).collect(Collectors.toList());
     }
+
+    public boolean checkExistenceFollowByFollowerIdAndFollowingId(UUID followerId, UUID followingId) {
+        Optional<Follow> follow = followRepository.findByFollower_idAndFollowing_id(followerId, followingId);
+        return follow.isPresent();
+    }
 }

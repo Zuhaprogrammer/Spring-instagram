@@ -31,8 +31,6 @@ public class UserController {
     @GetMapping("/search/{search}")
     @ResponseBody
     public List<UserResponse> getResultOfSearch(@PathVariable String search) {
-        List<UserResponse> result = userService.getResultOfSearch(search);
-        System.out.println(result);
-        return result;
+        return userService.getResultOfSearch(search);
     }
 }
